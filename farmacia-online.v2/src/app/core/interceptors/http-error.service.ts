@@ -25,10 +25,17 @@ export const httpErrorInterceptor: HttpInterceptorFn = (
       }
 
       switch(error.status){
+        case 409:
+          messageService.add({
+            severity: 'info',
+            summary: 'Info',
+            detail: message
+          });
+          break;
         case 401:
           router.navigate(['/login']);
           messageService.add({
-            severity: 'info',
+            severity: 'error',
             summary: 'Session',
             detail: message
           });

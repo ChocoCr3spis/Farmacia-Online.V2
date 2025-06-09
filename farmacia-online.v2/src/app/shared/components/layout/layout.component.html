@@ -31,13 +31,13 @@
                 </a>
             </ng-template>
             <ng-template #end class="menu-footer">
-                <button pRipple class="relative overflow-hidden w-full border-0 bg-transparent flex items-start p-2 pl-4 hover:bg-surface-100 dark:hover:bg-surface-800 rounded-none cursor-pointer transition-colors duration-200 profile-btn">
-                    <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" class="mr-2" shape="circle" />
+                <p-button pRipple class="relative overflow-hidden w-full border-0 bg-transparent flex items-start p-2 pl-4 hover:bg-surface-100 dark:hover:bg-surface-800 rounded-none cursor-pointer transition-colors duration-200 profile-btn">
+                    <p-avatar src="assets/defaultUser.png" class="mr-2" shape="circle" />
                     <span class="inline-flex flex-col">
-                        <span class="font-bold">Amy Elsner</span>
-                        <span class="text-sm">Admin</span>
+                        <span class="username ms-2">{{ this.user?.user?.name }}</span>
+                        <span class="role">{{ this.user?.user?.role }}</span>
                     </span>
-                </button>
+                </p-button>
             </ng-template>
           </p-menu>
         </div>

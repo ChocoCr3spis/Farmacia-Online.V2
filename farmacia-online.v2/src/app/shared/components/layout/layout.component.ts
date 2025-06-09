@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { User } from '../../../core/models/user/user';
+import { UserService } from '../../../core/services/integration/user.service';
 
 @Component({
   selector: 'app-layout',
@@ -9,18 +11,16 @@ import { MenuItem } from 'primeng/api';
 })
 export class LayoutComponent {
   menuItems: MenuItem[] = [];
-
-  selectedMember = null;
-
-  members = [
-      { name: 'Amy Elsner', image: 'amyelsner.png', email: 'amy@email.com', role: 'Owner' },
-      { name: 'Bernardo Dominic', image: 'bernardodominic.png', email: 'bernardo@email.com', role: 'Editor' },
-      { name: 'Ioni Bowcher', image: 'ionibowcher.png', email: 'ioni@email.com', role: 'Viewer' },
-  ];
-
+  user: User | undefined;
   items: any;
 
-  ngOnInit() {
+  constructor(
+    private userService: UserService
+  ){}
+
+  async ngOnInit() {
+    this.user = await this.userService.getUserProfile();
+
     this.menuItems = [
       { label: 'Welcome', routerLink: '/home' },
       { label: 'Productos', routerLink: '/productos' }

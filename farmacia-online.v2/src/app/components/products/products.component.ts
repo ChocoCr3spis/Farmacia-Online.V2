@@ -11,10 +11,10 @@ import { Product } from '../../core/models/products';
 export class ProductsComponent {
   products: Product[] = [{
       id: undefined,
-      name: undefined,
-      description: undefined,
-      price: undefined,
-      stock: undefined,
+      name: 'NAME',
+      description: 'Description',
+      price: 40,
+      stock: 'OUTOFSTOCK',
       image_url: undefined
   }];
   layout: any = 'grid';
