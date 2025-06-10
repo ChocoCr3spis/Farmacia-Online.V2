@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ModelSignal } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { UserService } from '../../core/services/integration/user.service';
+import { User } from '../../core/models/user/user';
+import { ModifyUser } from '../../core/models/user/modifyUser';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,13 +12,20 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators }
 })
 export class UserProfileComponent {
   profileForm!: FormGroup;
+  userInfo: User | undefined;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService
+  ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
+
+    this.userInfo = await this.userService.getUserProfile();
+
     this.profileForm = this.fb.group({
-      name: ['Samuel Pérez', [Validators.required]],
-      email: ['samuel@pharmashop.com', [Validators.required, Validators.email]],
+      name: [this.userInfo.user?.name, [Validators.required]],
+      email: [this.userInfo.user?.email, [Validators.required, Validators.email]],
       password: ['', [Validators.minLength(6)]],
       confirmPassword: ['']
     }, { validators: this.passwordsMatchValidator });
@@ -44,5 +54,15 @@ export class UserProfileComponent {
   get passwordMismatch(): boolean {
     return this.profileForm.hasError('passwordsMismatch') &&
            this.profileForm.get('confirmPassword')?.touched!;
+  }
+
+  async modifyUserProfile(){
+    let modUser: ModifyUser = {
+      name: this.profileForm.controls['name'].value ,
+      email: this.profileForm.controls['email'].value,
+      password: this.profileForm.controls['confirmPassword'].value
+    }
+
+    await this.userService.modifyUser(modUser)
   }
 }

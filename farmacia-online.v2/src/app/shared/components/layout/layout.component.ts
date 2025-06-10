@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { User } from '../../../core/models/user/user';
 import { UserService } from '../../../core/services/integration/user.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/integration/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -15,7 +17,9 @@ export class LayoutComponent {
   items: any;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router,
+    private authService: AuthService
   ){}
 
   async ngOnInit() {
@@ -32,19 +36,24 @@ export class LayoutComponent {
           label: 'Profile',
           items: [
               {
-                  label: 'User Profile',
-                  icon: 'pi pi-cog',
-                  route: '/user-profile'
+                label: 'User Profile',
+                icon: 'pi pi-cog',
+                route: '/user-profile'
               },
               {
-                  label: 'Favourites',
-                  icon: 'pi pi-inbox',
-                  route: '/favourites'
+                label: 'Favourites',
+                icon: 'pi pi-inbox',
+                route: '/favourites'
               },
               {
-                  label: 'Logout',
-                  icon: 'pi pi-sign-out',
-                  route: '/logout'
+                action: 'logout',
+                label: 'Logout',
+                icon: 'pi pi-sign-out',
+              },
+              {
+                action: 'delete-user',
+                label: 'Delete account',
+                icon: 'pi pi-trash error',
               }
           ]
       },
@@ -52,5 +61,15 @@ export class LayoutComponent {
           separator: true
       }
   ];
+  }
+
+  async deleteAccount(){
+    await this.userService.deleteAccount();
+    this.router.navigate(['/login'])
+  }
+
+  async logout(){
+    await this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

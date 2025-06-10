@@ -20,3 +20,12 @@ small {
     color: red;
     font-size: 0.75rem;
 }
+
+.footer {
+    display: flex;
+    justify-content: end;
+}
+
+input, .btn-cont, :host ::ng-deep .p-password, :host ::ng-deep input{
+    width: 100% !important;
+}

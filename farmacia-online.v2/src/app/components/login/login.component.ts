@@ -29,11 +29,8 @@ export class LoginComponent {
   }
 
   async onSubmit() {
-      try{
-        const { email, password } = this.loginForm.value;
-        await this.authService.login({ email: email, password: password });
-        this.router.navigate(['/home']);
-      }catch{}
-
+    const { email, password } = this.loginForm.value;
+    await this.authService.login({ email: email, password: password });
+    this.router.navigate(['/home']);
   }
 }

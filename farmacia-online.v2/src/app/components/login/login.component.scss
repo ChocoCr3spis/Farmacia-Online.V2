@@ -41,3 +41,7 @@ input, .btn-cont {
 p{
   margin: 0;
 }
+
+input, .btn-cont, :host ::ng-deep .p-password, :host ::ng-deep input{
+  width: 100% !important;
+}

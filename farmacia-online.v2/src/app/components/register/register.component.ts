@@ -31,12 +31,10 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     const formData = this.registerForm.value;
-    try{
-      this.authService.register(formData)
-      this.authService.login({ email: formData.email, password: formData.password })
-      this.router.navigate(['/home']);
-    }catch{}
+    await this.authService.register(formData)
+    await this.authService.login({ email: formData.email, password: formData.password })
+    this.router.navigate(['/home']);
   }
 }
