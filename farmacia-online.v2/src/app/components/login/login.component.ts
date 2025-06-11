@@ -33,4 +33,8 @@ export class LoginComponent {
     await this.authService.login({ email: email, password: password });
     this.router.navigate(['/home']);
   }
+
+  redirect(){
+    this.router.navigate(['/register']);
+  }
 }
