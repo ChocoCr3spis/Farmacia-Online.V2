@@ -32,7 +32,7 @@
         </div> 
 
         <div class="register-footer">
-            <a href="/login">Tienes cuenta? Login</a>
+            <a (click)="redirect()">Tienes cuenta? Login</a>
             <p-button type="submit" label="Registrarse" icon="pi pi-user-plus" [disabled]="registerForm.invalid" />
         </div>
       </form>

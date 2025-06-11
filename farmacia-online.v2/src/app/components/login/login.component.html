@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="login-footer">
-            <a href="/register">No tienes cuenta? Registrate AQUI!</a>
+            <a (click)="redirect()">No tienes cuenta? Registrate AQUI!</a>
             <p-button label="Entrar" type="submit" icon="pi pi-sign-in" [disabled]="this.loginForm.invalid"></p-button>
         </div>
       </form>

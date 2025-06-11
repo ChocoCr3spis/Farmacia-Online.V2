@@ -37,4 +37,8 @@ export class RegisterComponent implements OnInit {
     await this.authService.login({ email: formData.email, password: formData.password })
     this.router.navigate(['/home']);
   }
+
+  redirect(){
+    this.router.navigate(['/login']);
+  }
 }
