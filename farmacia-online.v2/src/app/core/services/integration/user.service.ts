@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { ModifyUser } from '../../models/user/modifyUser';
 import { User } from '../../models/user/user';
-import { environment } from '../../../../enviroments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
