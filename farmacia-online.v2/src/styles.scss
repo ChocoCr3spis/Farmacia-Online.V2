@@ -27,3 +27,15 @@ a{
 .error {
     color: #df0304;
 }
+
+.link {
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+  
+.link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
