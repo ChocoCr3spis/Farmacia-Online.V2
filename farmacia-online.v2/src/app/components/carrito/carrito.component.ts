@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {lastValueFrom, Observable} from 'rxjs';
 import { CartService } from '@services/cart.service';
-import { CartItem } from '@models/cart-item';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrito',
@@ -11,35 +11,42 @@ import { CartItem } from '@models/cart-item';
 })
 
 export class CarritoComponent {
-  cartItems: CartItem[] = [];
+  cartItems: any[] = [];
   totalCost: number = 0;
   loading: boolean = false;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private router: Router
+  ) {}
 
   async ngOnInit() {
     this.loading = true;
     this.cartItems = await this.cartService.getCart();
-    console.log(this.cartItems);
-
+    this.cartItems.forEach(item => { this.totalCost += item.price * item.quantity})
+    this.loading = false;
   }
 
-  async remove(item: CartItem): Promise<void> {
-    this.loading = true;
-    await this.cartService.removeFromCart(item.product.id);
+  async remove(itemDel: any): Promise<void> {
+    await this.cartService.removeFromCart(itemDel.id);
+    this.cartItems = this.cartItems.filter(item => item != itemDel)
+    this.totalCost -= itemDel.price * itemDel.quantity;
   }
 
-  async changeQty(item: CartItem, event: Event): Promise<void> {
+  async changeQty(item: any, event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
     const qty = Math.max(1, Number(input.value));
-    this.loading = true;
-    await this.cartService.updateQuantity(item.product.id, qty);
+    await this.cartService.updateQuantity(item.id, qty);
+    if(qty > item.quantity){
+      this.totalCost += item.price
+      this.cartItems[this.cartItems.indexOf(item)].quantity += 1;
+    }else{
+      this.totalCost -= item.price
+      this.cartItems[this.cartItems.indexOf(item)].quantity -= 1;
+    }
   }
 
-  async clearCart(): Promise<void> {
-    if (confirm('¿Deseas vaciar todo el carrito?')) {
-      this.loading = true;
-      await this.cartService.clearCart();
-    }
+  navigate(){
+    this.router.navigate(['/productos'])
   }
 }

@@ -16,7 +16,7 @@ export class CartService {
   }
 
   async getCart() {
-    return await lastValueFrom(this.http.get<CartItem[]>(`${environment.apiUrl}/cart`, { withCredentials: true }));
+    return await lastValueFrom(this.http.get<any>(`${environment.apiUrl}/cart`, { withCredentials: true }));
   }
 
   getTotalCount$(): Observable<number> {
@@ -55,12 +55,5 @@ export class CartService {
       this.http.delete(`${this.apiUrl}/${id}`, { withCredentials: true })
     );
     await this.loadFromServer();
-  }
-
-  async clearCart(): Promise<void> {
-    const items = this.cartSubject.value;
-    for (const i of items) {
-      await this.removeFromCart(i.product.id ?? i.product.id);
-    }
   }
 }

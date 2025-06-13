@@ -1,5 +1,5 @@
 <div class="cart-container" *ngIf="!loading; else loadingTemplate">
-  <ng-container *ngIf="cartItems.length else empty">
+  <ng-container *ngIf="cartItems.length > 0 else empty">
     <h2>Tu carrito ({{ cartItems.length }} productos)</h2>
     <table class="cart-table">
       <thead>
@@ -16,10 +16,10 @@
           <td class="prod-info">
             <img
               [src]="'https://placehold.jp/3d4070/ffffff/50x50.png'"
-              [alt]="item.product.name"
+              [alt]="item.name"
               width="50"
             />
-            {{ item.product.name }}
+            {{ item.name}}
           </td>
           <td>
             <input
@@ -29,8 +29,8 @@
               (change)="changeQty(item, $event)"
             />
           </td>
-          <td>{{ item.product.price | currency }}</td>
-          <td>{{ (item.product.price * item.quantity) | currency }}</td>
+          <td>{{ item.price | currency }}</td>
+          <td>{{ (item.price * item.quantity) | currency }}</td>
           <td>
             <button (click)="remove(item)">❌</button>
           </td>
@@ -41,7 +41,6 @@
     <div class="cart-summary">
       <strong>Total:</strong> {{ totalCost | currency }}
       <button routerLink="/checkout">Ir a pagar</button>
-      <button (click)="clearCart()">Vaciar carrito</button>
     </div>
   </ng-container>
 </div>
@@ -52,5 +51,5 @@
 
 <ng-template #empty>
   <p>El carrito está vacío.</p>
-  <a routerLink="/products">Volver a productos</a>
+  <a class="link" (click)="navigate()">Volver a productos</a>
 </ng-template>
