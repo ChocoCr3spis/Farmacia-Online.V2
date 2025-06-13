@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 import { UserProfileComponent } from './user-profile.component';
 import { UserProfileRoutes } from './user-profile.routes';
 
@@ -12,7 +12,7 @@ import { UserProfileRoutes } from './user-profile.routes';
     UserProfileRoutes
   ],
   exports: [
-    
+
   ]
 })
 

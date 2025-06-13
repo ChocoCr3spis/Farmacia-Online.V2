@@ -1,8 +1,8 @@
 import { Component, ModelSignal } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { UserService } from '../../core/services/integration/user.service';
-import { User } from '../../core/models/user/user';
-import { ModifyUser } from '../../core/models/user/modifyUser';
+import { UserService } from '@services/user.service';
+import { User } from '@models/user/user';
+import { ModifyUser } from '@models/user/modifyUser';
 
 @Component({
   selector: 'app-user-profile',

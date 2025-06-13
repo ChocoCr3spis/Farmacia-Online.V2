@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register.component';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 import { RegisterRoutes } from './register.routes';
 
 @NgModule({
@@ -12,7 +12,7 @@ import { RegisterRoutes } from './register.routes';
     RegisterRoutes
   ],
   exports: [
-    
+
   ]
 })
 

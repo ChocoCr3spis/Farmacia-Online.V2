@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { ModifyUser } from '../../models/user/modifyUser';
-import { User } from '../../models/user/user';
-import { environment } from '../../../../environments/environment';
+import { ModifyUser } from '@models/user/modifyUser';
+import { User } from '@models/user/user';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'

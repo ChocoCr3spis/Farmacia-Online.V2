@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ProductService } from '../../core/services/integration/products.service';
-import { Product } from '../../core/models/products';
+import { ProductService } from '@services/products.service';
+import { Product } from '@models/products';
 
 @Component({
   selector: 'app-products',
@@ -16,7 +16,7 @@ export class ProductsComponent {
   constructor(
     private productsService: ProductService
   ){}
-  
+
   async ngOnInit() {
     this.products = await this.productsService.getProducts();
     console.log(this.products);

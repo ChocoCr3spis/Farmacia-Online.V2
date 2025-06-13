@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthService } from '../../core/services/integration/auth.service';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-register',

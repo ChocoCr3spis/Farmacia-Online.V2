@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { User } from '../../../core/models/user/user';
-import { UserService } from '../../../core/services/integration/user.service';
+import { User } from '@models/user/user';
+import { UserService } from '@services/user.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../core/services/integration/auth.service';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-layout',

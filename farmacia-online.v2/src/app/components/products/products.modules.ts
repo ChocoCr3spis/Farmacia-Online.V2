@@ -1,5 +1,5 @@
 import { NgModule, OnInit } from '@angular/core';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 import { ProductsRoutes } from './products.routes';
 import { ProductsComponent } from './products.component';
 
@@ -12,10 +12,10 @@ import { ProductsComponent } from './products.component';
     ProductsRoutes
   ],
   exports: [
-    
+
   ]
 })
 
-export class ProductsModule { 
-  
+export class ProductsModule {
+
 }

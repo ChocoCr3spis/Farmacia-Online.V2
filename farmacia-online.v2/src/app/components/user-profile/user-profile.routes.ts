@@ -1,6 +1,6 @@
 import { NgModule, OnInit } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from '../../shared/components/layout/layout.component';
+import { LayoutComponent } from '@shared/components/layout/layout.component';
 import { UserProfileComponent } from './user-profile.component';
 
 const routes: Routes = [
