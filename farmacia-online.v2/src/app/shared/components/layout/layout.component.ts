@@ -4,6 +4,7 @@ import { User } from '@models/user/user';
 import { UserService } from '@services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from '@services/auth.service';
+import { CartService} from '@services/cart.service';
 
 @Component({
   selector: 'app-layout',
@@ -11,6 +12,7 @@ import { AuthService } from '@services/auth.service';
   styleUrl: './layout.component.scss',
   standalone: false
 })
+
 export class LayoutComponent {
   menuItems: MenuItem[] = [];
   user: User | undefined;
@@ -19,12 +21,12 @@ export class LayoutComponent {
   constructor(
     private userService: UserService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    public cartService: CartService
   ){}
 
   async ngOnInit() {
     this.user = await this.userService.getUserProfile();
-
     this.menuItems = [
       { label: 'Welcome', routerLink: '/home' },
       { label: 'Productos', routerLink: '/productos' }

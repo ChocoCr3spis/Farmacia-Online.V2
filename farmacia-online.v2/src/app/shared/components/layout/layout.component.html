@@ -3,15 +3,19 @@
         <ng-template pTemplate="start">
           <span class="logo">PharmaShop</span>
         </ng-template>
-      
+
         <ng-template pTemplate="end">
           <div class="right-menu">
-            <button pButton icon="pi pi-shopping-cart" class="p-button-rounded p-button-text"></button>
+            <button pButton icon="pi pi-shopping-cart" type="button" [routerLink]="['/cart']">>
+              <p-badge value="{{ cartService.getTotalCount$() | async}}" />
+            </button>
             <p-button icon="pi pi-user" (click)="user.toggle($event)"/>
+
           </div>
         </ng-template>
+
       </p-menubar>
-      
+
       <div class="route-content">
         <router-outlet></router-outlet>
       </div>

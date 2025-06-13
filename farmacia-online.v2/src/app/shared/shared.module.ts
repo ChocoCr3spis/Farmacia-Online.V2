@@ -21,32 +21,34 @@ import { DataView } from 'primeng/dataview';
 import { Tag } from 'primeng/tag';
 import { SelectButton } from 'primeng/selectbutton';
 import { MenuModule } from 'primeng/menu';
+import {Badge} from 'primeng/badge';
 
 @NgModule({
     declarations: [
       LayoutComponent
     ],
-    imports: [
-      MenuModule,
-      FormsModule,
-      SelectButton,
-      DataView,
-      Tag,
-      InputGroupModule,
-      InputGroupAddonModule,
-      CommonModule,
-      ReactiveFormsModule,
-      InputTextModule,
-      PasswordModule,
-      ButtonModule,
-      CardModule,
-      ToastModule,
-      PrimeNgModule,
-      AvatarModule,
-      MenubarModule,
-      RouterModule,
-      PopoverModule
-    ],
+  imports: [
+    MenuModule,
+    FormsModule,
+    SelectButton,
+    DataView,
+    Tag,
+    InputGroupModule,
+    InputGroupAddonModule,
+    CommonModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    PasswordModule,
+    ButtonModule,
+    CardModule,
+    ToastModule,
+    PrimeNgModule,
+    AvatarModule,
+    MenubarModule,
+    RouterModule,
+    PopoverModule,
+    Badge
+  ],
     exports: [
       MenuModule,
       FormsModule,
@@ -69,5 +71,5 @@ import { MenuModule } from 'primeng/menu';
     ],
     providers: []
   })
-  
+
   export class SharedModule { }

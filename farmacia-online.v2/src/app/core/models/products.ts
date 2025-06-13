@@ -1,8 +1,8 @@
 export class Product {
-    id: number | undefined;
-    name: string | undefined;
+    id!: number;
+    name!: string;
     description: string | undefined;
-    price: number = 0;
-    stock: number | undefined;
-    image_url: string | undefined;
+    price!: number;
+    stock!: number;
+    image_url: string = 'https://placehold.jp/3d4070/ffffff/150x120.png';
 }

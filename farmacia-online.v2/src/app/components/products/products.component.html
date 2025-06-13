@@ -7,7 +7,7 @@
               <div class="product-image-wrapper">
                 <img
                   class="product-image"
-                  [src]="'https://placehold.jp/3d4070/ffffff/150x150.png'"
+                  [src]="item.image_url"
                   [alt]="item.name"
                 />
                 <p-tag
@@ -24,11 +24,12 @@
                 <div class="product-actions">
                   <span class="product-price">${{ item.price }}</span>
                   <div class="product-buttons">
-                    <p-button icon="pi pi-heart" [outlined]="true"></p-button>
+                    <!--<p-button icon="pi pi-heart" [outlined]="true"></p-button>-->
                     <p-button
                       icon="pi pi-shopping-cart"
-                      label="Buy Now"
+                      label="Add to cart"
                       [disabled]="item.inventoryStatus === 'OUTOFSTOCK'"
+                      (onClick)="addToCart(item)"
                     ></p-button>
                   </div>
                 </div>
@@ -39,4 +40,3 @@
       </ng-template>
     </p-dataview>
   </div>
-  

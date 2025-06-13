@@ -7,6 +7,7 @@ const registerModule         = () => import('./components/register/register.modu
 const homeModule             = () => import('./components/home/home.modules').then(m => m.HomeModule);
 const productsModule         = () => import('./components/products/products.modules').then(m => m.ProductsModule);
 const userProfileModule      = () => import('./components/user-profile/user-profile.modules').then(m => m.UserProfileModule);
+const cartModule      = () => import('./components/carrito/carrito.modules').then(m => m.CarritoModule);
 
 
 export const routes: Routes = [
@@ -17,6 +18,7 @@ export const routes: Routes = [
   { path: 'home'              ,                           loadChildren: homeModule     },
   { path: 'productos'         ,                           loadChildren: productsModule },
   { path: 'user-profile'      ,                           loadChildren: userProfileModule },
+  { path: 'cart',                                         loadChildren: cartModule },
 ];
 
 @NgModule({
