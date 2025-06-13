@@ -1,42 +1,54 @@
-<div class="cart-container" *ngIf="cartItems$ | async as items; else empty">
-  <h2>Tu carrito ({{ items.length }} productos)</h2>
-  <table class="cart-table">
-    <thead>
-      <tr>
-        <th>Producto</th>
-        <th>Cantidad</th>
-        <th>Precio</th>
-        <th>Subtotal</th>
-        <th>Eliminar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of items">
-        <td class="prod-info">
-          <img
-            [src]="'https://placehold.jp/3d4070/ffffff/50x50.png'"
-            [alt]="item.product.name"
-          />
-          {{ item.product.name }}
-        </td>
-        <td>
-          <input type="number" min="1" [value]="item.quantity"
-            (change)="changeQty(item.product.id, $event)" />
-        </td>
-        <td>{{ item.product.price | currency }}</td>
-        <td>{{ (item.product.price * item.quantity) | currency }}</td>
-        <td>
-          <button (click)="remove(item.product.id)">❌</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="cart-container" *ngIf="!loading; else loadingTemplate">
+  <ng-container *ngIf="cartItems.length else empty">
+    <h2>Tu carrito ({{ cartItems.length }} productos)</h2>
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Subtotal</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          <td class="prod-info">
+            <img
+              [src]="'https://placehold.jp/3d4070/ffffff/50x50.png'"
+              [alt]="item.product.name"
+              width="50"
+            />
+            {{ item.product.name }}
+          </td>
+          <td>
+            <input
+              type="number"
+              min="1"
+              [value]="item.quantity"
+              (change)="changeQty(item, $event)"
+            />
+          </td>
+          <td>{{ item.product.price | currency }}</td>
+          <td>{{ (item.product.price * item.quantity) | currency }}</td>
+          <td>
+            <button (click)="remove(item)">❌</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-  <div class="cart-summary">
-    <strong>Total:</strong> {{ totalCost | currency }}
-    <button routerLink="/checkout">Ir a pagar</button>
-  </div>
+    <div class="cart-summary">
+      <strong>Total:</strong> {{ totalCost | currency }}
+      <button routerLink="/checkout">Ir a pagar</button>
+      <button (click)="clearCart()">Vaciar carrito</button>
+    </div>
+  </ng-container>
 </div>
+
+<ng-template #loadingTemplate>
+  <p>Cargando carrito…</p>
+</ng-template>
 
 <ng-template #empty>
   <p>El carrito está vacío.</p>

@@ -7,7 +7,7 @@
         <ng-template pTemplate="end">
           <div class="right-menu">
             <button pButton icon="pi pi-shopping-cart" type="button" [routerLink]="['/cart']">>
-              <p-badge value="{{ cartService.getTotalCount$() | async}}" />
+              <p-badge value="{{ cartService.getTotalCount$() | async }}"/>
             </button>
             <p-button icon="pi pi-user" (click)="user.toggle($event)"/>
 

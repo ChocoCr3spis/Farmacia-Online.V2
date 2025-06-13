@@ -1,37 +1,45 @@
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import {lastValueFrom, Observable} from 'rxjs';
 import { CartService } from '@services/cart.service';
 import { CartItem } from '@models/cart-item';
 
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
-  styleUrl: './carrito.component.scss',
+  styleUrls: ['./carrito.component.scss'],
   standalone: false
 })
 
 export class CarritoComponent {
-  cartItems$!: Observable<CartItem[]>;
+  cartItems: CartItem[] = [];
   totalCost: number = 0;
+  loading: boolean = false;
 
   constructor(private cartService: CartService) {}
 
   async ngOnInit() {
-    // Observable de items
-    this.cartItems$ = this.cartService.getCart$();
+    this.loading = true;
+    this.cartItems = await this.cartService.getCart();
+    console.log(this.cartItems);
 
-    // También puedes suscribirte para calcular el total
-    this.cartItems$.subscribe(items => {
-      this.totalCost = this.cartService.getTotalCost();
-    });
   }
 
-  remove(id: number | string) {
-    this.cartService.removeFromCart(id);
+  async remove(item: CartItem): Promise<void> {
+    this.loading = true;
+    await this.cartService.removeFromCart(item.product.id);
   }
 
-  changeQty(id: number | string, event: any) {
-    const qty = +event.target.value;
-    this.cartService.updateQuantity(id, qty);
+  async changeQty(item: CartItem, event: Event): Promise<void> {
+    const input = event.target as HTMLInputElement;
+    const qty = Math.max(1, Number(input.value));
+    this.loading = true;
+    await this.cartService.updateQuantity(item.product.id, qty);
+  }
+
+  async clearCart(): Promise<void> {
+    if (confirm('¿Deseas vaciar todo el carrito?')) {
+      this.loading = true;
+      await this.cartService.clearCart();
+    }
   }
 }
